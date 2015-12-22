@@ -60,12 +60,12 @@ html, body {
   top: 0;
   right: 0;
   left: 0;
-  height: 60px;
+  height: 80px;
   z-index: 100;
 }
 
 #switcher .inner {
-  padding: 20px 0;
+  padding: 20px 0 5px 0;
   background: white;
   max-width: 500px;
   border-bottom: 2px solid #ccc;

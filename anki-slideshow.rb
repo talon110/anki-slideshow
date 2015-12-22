@@ -14,7 +14,7 @@ module AnkiSlideshow
   
   NO_CARDS_MESSAGE = "<strong>No cards in this deck, please select another.</strong>"
   X_FRAME_OPTIONS = "ALLOW-FROM http://tedpak.com"
-  BASE_TITLE = "Medical School Flashcards"
+  BASE_TITLE = "Anki Flashcards"
   IMAGE_CONTENT_TYPES = {"jpg" => "jpeg"}
   
   class << self
@@ -59,7 +59,7 @@ module AnkiSlideshow
     end
 
     get "/" do
-      @deck_name = AnkiSlideshow.decks.keys.sample
+      @deck_name = "C-17 MQF" #AnkiSlideshow.decks.keys.sample
       @card = {
         "q" => erb(:welcome, :layout => false, :locals => {:back => false}), 
         "a" => erb(:welcome, :layout => false, :locals => {:back => true})
@@ -75,7 +75,11 @@ module AnkiSlideshow
       content_type IMAGE_CONTENT_TYPES[extension] || "image/#{extension}"
       send_file File.join(AnkiSlideshow.media_dir, request.path_info)
     end
-    
+
+    get "/C17_Collection.apkg" do 
+      send_file "/C17_Collection.apkg", :type => 'Application/octet-stream'
+    end   
+
     get "/:deck" do
       # disable HTTP caching since this serves random cards
       expires 0, :no_cache, :no_store, :must_revalidate
